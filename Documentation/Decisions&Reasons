@@ -1,0 +1,25 @@
+-> Why Java?
+Easy to use, used it before, Aware of DS in it, can setup quickly
+----------------
+-> Why separate Job and Job schedule? 
+The same Job/Task/Function can be used again with different schedule.
+Applying "DRY principle"
+-----------------
+-> Why jobQueue is a priority queue?
+In the scheduler first implementation we need to get the job with the nearest scheduled time 
+---------------------
+-> Why trigger states?
+To be able to check for the CronJob state at any time for example if we want to shutdown the scheduler or we want to know if the job is running or waiting or has an error
+----------------------
+-> Why Capacity for scheduler and why the capacity is 10?
+10 is a small random number to be able to test the task easily and we can change  it easily
+Capacity depends on the resource that the code will run on and limiting it is to avoid crashing or overflow.
+-------------------------
+-> Why can add/cancel jobs to scheduler before start?
+For the ease of use of the scheduler, schedule can be completely prepared before starting to work. Besides, it can has more extra jobs while running.
+-------------------------
+-> Interval between jobs measured from the start time of the previous job
+----------------------------
+-> Milliseconds not added to TimeInterval for simplicity
+-----------------------------
+->
