@@ -1,6 +1,10 @@
+package scheduler;
 import java.util.PriorityQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import job.CronJob;
+import job.CronJobComparator;
 
 public class Scheduler {
 	private static final Logger LOGGER = Logger.getLogger("Scheduler Logger");

@@ -1,10 +1,11 @@
+package job;
 import java.util.Calendar;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import Enums.TriggerState;
-import Helpers.TimeInterval;
+import enums.TriggerState;
+import helpers.TimeInterval;
 
 public class CronJob {
 	private static final Logger LOGGER = Logger.getLogger("Cron Job Logger");

@@ -1,6 +1,10 @@
+package tests;
 import java.util.Calendar;
 import java.util.TimerTask;
-import Helpers.TimeInterval;
+
+import helpers.TimeInterval;
+import job.CronJob;
+import scheduler.Scheduler;
 
 public class Test {
 

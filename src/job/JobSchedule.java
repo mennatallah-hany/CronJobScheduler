@@ -1,9 +1,10 @@
+package job;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import Helpers.Helper;
-import Helpers.TimeInterval;
+import helpers.Helper;
+import helpers.TimeInterval;
 
 public class JobSchedule {
 	private static final Logger LOGGER = Logger.getLogger("Job Schedule Logger");

@@ -1,4 +1,4 @@
-package Helpers;
+package helpers;
 
 public class TimeInterval {
 	int second = 0;
