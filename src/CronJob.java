@@ -1,9 +1,14 @@
 import java.util.Calendar;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import Enums.TriggerState;
 import Helpers.TimeInterval;
 
 public class CronJob {
+	private static final Logger LOGGER = Logger.getLogger("Cron Job Logger");
+
 	Job job;
 	JobSchedule jobSchedule;
 	TriggerState state = TriggerState.WAITING;
@@ -27,7 +32,6 @@ public class CronJob {
 		if(scheduledTime.getTimeInMillis() - timeNow.getTimeInMillis() > 0) {
 			return false;
 		}
-		//System.out.println("should run now : true");
 		return true;
 	}
 	public Calendar getNextRunScheduledTime() {
@@ -46,7 +50,7 @@ public class CronJob {
 	}
 	public String getId() {
 		if(job == null || job.getId() == null) {
-			System.out.println("Err: Invalid job id");
+			LOGGER.log(Level.WARNING,  "Invalid job id");
 			return null;
 		}
 		return job.getId();

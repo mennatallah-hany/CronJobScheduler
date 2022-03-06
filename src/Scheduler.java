@@ -1,6 +1,9 @@
 import java.util.PriorityQueue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Scheduler {
+	private static final Logger LOGGER = Logger.getLogger("Scheduler Logger");
 	String id;
 	static final int CAPACITY = 10;
 	private boolean isRunning = false;
@@ -14,11 +17,12 @@ public class Scheduler {
 	
 	public void start() {
 		this.isRunning = true;
-		System.out.println("Scheduler started");
+		LOGGER.log(Level.INFO, "Scheduler started");
 		while(isRunning) {
 			if(!jobQueue.isEmpty()) {
 				CronJob nextJobToRun = jobQueue.peek();
 				if(nextJobToRun.shouldRunNow()) {
+					LOGGER.log(Level.FINER, "Job " + nextJobToRun.getId() + " should run now");
 					executeJobAsync(nextJobToRun);
 					jobQueue.poll();
 					nextJobToRun.updateScheduledTime();
@@ -37,11 +41,10 @@ public class Scheduler {
 	public void shutdown() {
 		// TODO: wait till any running job finish and store history
 		this.isRunning = false;
-		System.out.println("Scheduler shutdown");
-
+		LOGGER.log(Level.INFO, "Scheduler shutdown");
 	}
 	
-	private boolean isFullScheduler() {
+	private boolean isSchedulerFull() {
 		int jobQueueSize = jobQueue.size();
 		if(jobQueueSize == CAPACITY) return true;
 		return false;
@@ -52,16 +55,16 @@ public class Scheduler {
 	 */
 	public boolean addJob(CronJob job) {
 		if(job == null) {
-			System.out.println("Err: Invalid job to add to scheduler");
+			LOGGER.log(Level.WARNING, "Invalid job, Can not add to scheduler");
 			return false;
 		}
-		if(isFullScheduler()) {
-			System.out.println("Err: Scheduler is full, cannot add extra jobs");
+		if(isSchedulerFull()) {
+			LOGGER.log(Level.WARNING, "Scheduler is full, cannot add extra jobs");
 			return false;
 		}
 		job.initializeForScheduler();
 		if(jobQueue.add(job)) {
-			System.out.println("Job : "+ job.getId() + " was added successfully to scheduler");
+			LOGGER.log(Level.INFO, "Job : "+ job.getId() + " was added successfully to scheduler");
 			return true;
 		}
 		return false;
@@ -72,17 +75,13 @@ public class Scheduler {
 	 */
 	public boolean cancelJob(CronJob job) {
 		if(jobQueue.remove(job)) {
-			System.out.println("Job : "+ job.getId() + " was removed from scheduler");
+			LOGGER.log(Level.INFO, "Job : "+ job.getId() + " was removed from scheduler");
 			return true;
 		}
 		return false;
 	}
 	
 	public int getJobCount() {
-		if(!isRunning) {
-			System.out.println("Err: Scheduler is not working, no running jobs");
-			return 0;
-		}
 		return jobQueue.size();
 	}
 	
