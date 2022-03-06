@@ -2,14 +2,18 @@ package tests;
 import java.util.Calendar;
 import java.util.TimerTask;
 
+import enums.SchedulerType;
 import helpers.TimeInterval;
 import job.CronJob;
-import scheduler.Scheduler;
+import scheduler.AbstractScheduler;
+import scheduler.PriorityScheduler;
+import scheduler.SchedulerFactory;
 
 public class Test {
 
 	public static void main(String[] args) {
-		Scheduler sched = new Scheduler("sched 1");
+		SchedulerFactory factory = new SchedulerFactory();
+		AbstractScheduler sched = factory.getScheduler(SchedulerType.PRIORITY_SCHEDULER, "sched 1");
 		TimeInterval initDelay1 = new TimeInterval(0, 0, 0, 0, 0, 0);
 		TimeInterval initDelay2 = new TimeInterval(0, 0, 0, 0, 0, 5);
 		TimeInterval interval1 = new TimeInterval(0, 0, 0, 0, 0, 10);

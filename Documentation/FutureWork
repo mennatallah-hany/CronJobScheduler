@@ -1,24 +1,5 @@
--> Add 3 implementations for scheduler
-1)<<current>> Priority Queue with all jobs, 
-always check when the peek job scheduled time comes, 
-Execute job in a separate thread and add the job with the new scheduled time to the queue again.
-2)Every job added has a thread from the beginning and the thread sleeps till the next execution time.
-3)Applying "Observer" pattern let the scheduler sleep till the nearest job scheduled time
-If a new job is added, notify the scheduler to recalculate the remaining time till the nearest job.
-
----------------------------------------------------
 -> Add Interfaces
 ---------------------------------------------------
--> Add Scheduler Factory
----------------------------------------------------
-->Add 2 types of JobSchedule
-1)<<current>> "Delay Job" with initial delay and interval between each job
-2)"Rate Job" that has specific Date/Time to execute with 
--frequency(Daily/hourly/..)
--atTime - atDay - atMonth -atYear
-
-can have an abstract class and both inherits it
-----------------------------------------------------
 ->Use Locks 
 ----------------------------------------------------
 ->Save history of scheduler and jobs and export it to text file
@@ -30,3 +11,14 @@ can have an abstract class and both inherits it
 -> Add Test Coverage
 -------------------------------------------------------
 ->Add actual and expected execution time
+------------------------------------------------------
+-> Allow user to define capacity (Feature)
+------------------------------------------------------
+->Add 2 types of JobSchedule
+1)<<current>> "Delay Job" with initial delay and interval between each job
+2)"Rate Job" that has specific Date/Time to execute with 
+-frequency(Daily/hourly/..)
+-atTime - atDay - atMonth -atYear
+
+can have an abstract class and both inherits it
+----------------------------------------------------

@@ -22,4 +22,18 @@ For the ease of use of the scheduler, schedule can be completely prepared before
 ----------------------------
 -> Milliseconds not added to TimeInterval for simplicity
 -----------------------------
-->
+-> Scheduler abstract class not interface bec there is implementation for some classes
+----------------------------------
+-> Add 3 implementations for scheduler
+1)priorityScheduler
+=====================
+Priority Queue with all jobs, always check when the peek job scheduled time comes, 
+Execute job in a separate thread and add the job with the new scheduled time to the queue again.
+2)AsyncScheduler"
+=====================
+Every job added has a thread from the beginning and the thread sleeps till the next execution time.
+3)ObserverScheduler"
+=====================
+Applying "Observer" pattern let the scheduler sleep till the nearest job scheduled time
+If a new job is added, notify the scheduler to recalculate the remaining time till the nearest job.
+--------------------------------------

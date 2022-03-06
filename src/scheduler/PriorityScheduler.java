@@ -1,24 +1,19 @@
 package scheduler;
 import java.util.PriorityQueue;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import job.CronJob;
 import job.CronJobComparator;
 
-public class Scheduler {
-	private static final Logger LOGGER = Logger.getLogger("Scheduler Logger");
-	String id;
-	static final int CAPACITY = 10;
-	private boolean isRunning = false;
-	private PriorityQueue<CronJob> jobQueue ;
+public class PriorityScheduler extends AbstractScheduler{
+	protected PriorityQueue<CronJob> jobQueue ;
 	
-	public Scheduler(String id) {
+	public PriorityScheduler(String id) {
 		this.id = id;
 		jobQueue = new PriorityQueue<>(new CronJobComparator());
-		
 	}
 	
+	@Override
 	public void start() {
 		this.isRunning = true;
 		LOGGER.log(Level.INFO, "Scheduler started");
@@ -42,17 +37,8 @@ public class Scheduler {
 		}
 	}
 	
-	public void shutdown() {
-		// TODO: wait till any running job finish and store history
-		this.isRunning = false;
-		LOGGER.log(Level.INFO, "Scheduler shutdown");
-	}
 	
-	private boolean isSchedulerFull() {
-		int jobQueueSize = jobQueue.size();
-		if(jobQueueSize == CAPACITY) return true;
-		return false;
-	} 
+
 	/*
 	 *  true :  job added to scheduler successfully
 	 *  false : job failed to add to scheduler
@@ -73,25 +59,6 @@ public class Scheduler {
 		}
 		return false;
 	}
-	/*
-	 *  true :  job cancelled from scheduler
-	 *  false : failed to remove job from scheduler
-	 */
-	public boolean cancelJob(CronJob job) {
-		if(jobQueue.remove(job)) {
-			LOGGER.log(Level.INFO, "Job : "+ job.getId() + " was removed from scheduler");
-			return true;
-		}
-		return false;
-	}
-	
-	public int getJobCount() {
-		return jobQueue.size();
-	}
-	
-	public int getRemSchedulerCapacity() {
-		return (CAPACITY - jobQueue.size());
-	}
 	
 	private void executeJobAsync(CronJob nextJobToRun) {
 		Thread thread = new Thread(new Runnable() {
@@ -100,5 +67,33 @@ public class Scheduler {
 		    	nextJobToRun.execute();
 		    }});  
 		thread.start();
+	}
+	@Override
+	public boolean isSchedulerFull() {
+		int jobQueueSize = jobQueue.size();
+		if(jobQueueSize == CAPACITY) return true;
+		return false;
+	} 
+	/*
+	 *  true :  job cancelled from scheduler
+	 *  false : failed to remove job from scheduler
+	 */
+	@Override
+	public boolean cancelJob(CronJob job) {
+		if(jobQueue.remove(job)) {
+			LOGGER.log(Level.INFO, "Job : "+ job.getId() + " was removed from scheduler");
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int getJobCount() {
+		return jobQueue.size();
+	}
+	
+	@Override
+	public int getRemSchedulerCapacity() {
+		return (CAPACITY - jobQueue.size());
 	}
 }
