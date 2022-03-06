@@ -5,8 +5,7 @@ Execute job in a separate thread and add the job with the new scheduled time to 
 2)Every job added has a thread from the beginning and the thread sleeps till the next execution time.
 3)Applying "Observer" pattern let the scheduler sleep till the nearest job scheduled time
 If a new job is added, notify the scheduler to recalculate the remaining time till the nearest job.
----------------------------------------------------
--> Use Logger
+
 ---------------------------------------------------
 -> Add Interfaces
 ---------------------------------------------------
