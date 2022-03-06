@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 import helpers.Helper;
 import helpers.TimeInterval;
 
-public class JobSchedule {
+public class JobSchedule implements IJobSchedule{
 	private static final Logger LOGGER = Logger.getLogger("Job Schedule Logger");
 	TimeInterval initialDelay;
 	TimeInterval interval;

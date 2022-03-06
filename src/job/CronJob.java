@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 import enums.TriggerState;
 import helpers.TimeInterval;
 
-public class CronJob {
+public class CronJob implements ICronJob{
 	private static final Logger LOGGER = Logger.getLogger("Cron Job Logger");
 
 	Job job;
