@@ -46,4 +46,10 @@ public class JobSchedule implements IJobSchedule{
 		}
 		return scheduledTime;
 	}
+	public TimeInterval getInitialDelay() {
+		return initialDelay;
+	}
+	public TimeInterval getInterval() {
+		return interval;
+	}
 }

@@ -56,7 +56,16 @@ public class CronJob implements ICronJob{
 		}
 		return job.getId();
 	}
+	public JobSchedule getJobSchedule() {
+		return jobSchedule;
+	}
+	public TriggerState getState() {
+		return state;
+	}
 	public void initializeForScheduler() {
 		jobSchedule.initialize();
+	}
+	public void end() {
+		this.state = TriggerState.ENDED;
 	}
 }

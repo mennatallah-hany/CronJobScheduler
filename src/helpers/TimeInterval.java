@@ -15,5 +15,12 @@ public class TimeInterval {
 		this.day = d;
 		this.month = m;
 		this.year = y;
+	} 
+	/* This function converts the time interval to milliseconds 
+	 * to be implemented now for simplicity it just converts seconds to milliseconds
+	 * ignoring all other fields (mins, hours,days,months,years) 
+	 * */
+	public long getMillis(){
+		return this.second * 1000;
 	}
 }

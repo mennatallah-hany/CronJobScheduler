@@ -68,18 +68,14 @@ public class PriorityScheduler extends AbstractScheduler{
 		    }});  
 		thread.start();
 	}
-	@Override
-	public boolean isSchedulerFull() {
-		int jobQueueSize = jobQueue.size();
-		if(jobQueueSize == CAPACITY) return true;
-		return false;
-	} 
+
 	/*
 	 *  true :  job cancelled from scheduler
 	 *  false : failed to remove job from scheduler
 	 */
 	@Override
 	public boolean cancelJob(CronJob job) {
+		if(job != null) job.end();
 		if(jobQueue.remove(job)) {
 			LOGGER.log(Level.INFO, "Job : "+ job.getId() + " was removed from scheduler");
 			return true;
@@ -88,12 +84,19 @@ public class PriorityScheduler extends AbstractScheduler{
 	}
 	
 	@Override
+	public boolean isSchedulerFull() {
+		int jobQueueSize = getJobCount();
+		if(jobQueueSize == CAPACITY) return true;
+		return false;
+	} 
+	
+	@Override
 	public int getJobCount() {
 		return jobQueue.size();
 	}
 	
 	@Override
 	public int getRemSchedulerCapacity() {
-		return (CAPACITY - jobQueue.size());
+		return (CAPACITY - getJobCount());
 	}
 }

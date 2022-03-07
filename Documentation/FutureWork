@@ -1,10 +1,4 @@
--> Add Interfaces
----------------------------------------------------
 ->Use Locks 
-----------------------------------------------------
-->Save history of scheduler and jobs and export it to text file
-----------------------------------------------------
--> Allow recover of scheduler from failure using history
 -----------------------------------------------------
 -> Add class diagram
 -----------------------------------------------------
@@ -12,6 +6,10 @@
 -------------------------------------------------------
 ->Add actual and expected execution time
 ------------------------------------------------------
+->Save history of scheduler and jobs and export it to text file
+----------------------------------------------------
+-> Allow recover of scheduler from failure using history
+-----------------------------------------------------
 -> Allow user to define capacity (Feature)
 ------------------------------------------------------
 ->Add 2 types of JobSchedule
@@ -22,3 +20,12 @@
 
 can have an abstract class and both inherits it
 ----------------------------------------------------
+-> Refactor TimeInterval to use TimeSpan and Period
+----------------------------------------------------
+->Add observer scheduler implementation
+------------------------------------------------------
+-> In Async scheduler , replace thread.stop() as it is not safe
+---------------------------------------------------- 
+-> implement getMillis() in Time interval because it is hardcoded now
+and may overflow if seconds * 1000 >  LONG_MAX (2147483647)
+-----------------------------------------------------

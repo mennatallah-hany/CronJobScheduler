@@ -9,7 +9,7 @@ import scheduler.AbstractScheduler;
 import scheduler.PriorityScheduler;
 import scheduler.SchedulerFactory;
 
-public class Test {
+public class PrioritySchedulerTests {
 
 	public static void main(String[] args) {
 		SchedulerFactory factory = new SchedulerFactory();
@@ -23,7 +23,7 @@ public class Test {
 
 			@Override
 			public void run() {
-				System.out.println("Task 1 running at" + Calendar.getInstance().getTime());
+				System.out.println("Priority Scheduler: Task 1 running at" + Calendar.getInstance().getTime());
 			}
 
 		};
@@ -31,7 +31,7 @@ public class Test {
 
 			@Override
 			public void run() {
-				System.out.println("Task 2 running at" + Calendar.getInstance().getTime());
+				System.out.println("Priority Scheduler: Task 2 running at" + Calendar.getInstance().getTime());
 			}
 
 		};
