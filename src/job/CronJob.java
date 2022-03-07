@@ -13,6 +13,9 @@ public class CronJob implements ICronJob{
 	Job job;
 	JobSchedule jobSchedule;
 	TriggerState state = TriggerState.WAITING;
+	// TODO: expectedExecutionTime;
+	// TODO: actualExecutionTime;
+
 	//TODO: int runCounts = 0;
 	//TODO: HashMap<> history  (run#, runStartTime, wasSuccessful?)
 	

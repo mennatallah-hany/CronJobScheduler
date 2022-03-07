@@ -27,13 +27,49 @@ For the ease of use of the scheduler, schedule can be completely prepared before
 -> Add 3 implementations for scheduler
 1)priorityScheduler
 =====================
-Priority Queue with all jobs, always check when the peek job scheduled time comes, 
-Execute job in a separate thread and add the job with the new scheduled time to the queue again.
+Priority Queue with all jobs, 
+keep iterating
+	check the scheduled time of the peek job
+	if now is the scheduled time 
+		execute the job in a new thread
+		update the scheduled time
+		add the job to scheduler again
+
+* Any new job added to the queue
+*Any deleted job removed from queue
+*shutdown clears the queue and change isRunning 
+
+
+Adv:
+-Simple in addition and deletion
+
+Disadv:
+-Resource exhaustion bec of the continuous iteration and comparing time with scheduled time
+
+[Recommended to use]
 2)AsyncScheduler"
 =====================
-Every job added has a thread from the beginning and the thread sleeps till the next execution time.
+*Before scheduler starts , there is a normal queue for all the jobs that needs to run
+*When scheduler starts, each job has a separate thread from the beginning which sleeps initial delay and keeps  executing and sleeps in the interval in a loop defined by the job state which doesn't equal ended
+*Any new job after start, a thread as mentioned starts with initDelay and intervals sleep
+*All running jobs stored in a hashset for fast access
+*For deletion of a job :
+before start: deleted from queue
+after start: change the state of job to be ended to break the executon iterating loop
+*shutdown: iterate through all jobs in hashset and terminate them  and change isRunning
+
+
+Adv:  
+-No continuous checking for time, each thread is independant from others
+
+Disadv:
+more complex in implementation solution
+Current implementation has some limitation (can be solved easily)n
+[Still needs some work bec of limitations in interval and initial delay thread sleep and getMillis method which is not implemented]
+
 3)ObserverScheduler"
 =====================
 Applying "Observer" pattern let the scheduler sleep till the nearest job scheduled time
-If a new job is added, notify the scheduler to recalculate the remaining time till the nearest job.
+If a new job is added, interrupt the sleep, notify the scheduler to recalculate the remaining time till the nearest job.
 --------------------------------------
+Async scheduler has its limitation in the interval duration due to limitation of thread.sleep in the current implementation

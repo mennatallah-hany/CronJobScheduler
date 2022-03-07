@@ -25,3 +25,4 @@ can have an abstract class and both inherit it
 -> implement getMillis() in Time interval because it is hardcoded now
 and may overflow if seconds * 1000 >  LONG_MAX (2147483647)
 -----------------------------------------------------
+-> Need to cover if interval equals 0 , the task will run infinitely and resource will overflow
