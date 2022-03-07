@@ -99,4 +99,16 @@ public class PriorityScheduler extends AbstractScheduler{
 	public int getRemSchedulerCapacity() {
 		return (CAPACITY - getJobCount());
 	}
+	
+	@Override
+	public void shutdown() {
+		// TODO: wait till any running job finish and store history
+		this.isRunning = false;
+		stopAllJobs();
+		LOGGER.log(Level.INFO, "Scheduler shutdown");
+	}
+	private void stopAllJobs() {
+		// any running will contnue execution but will delete the rest
+		jobQueue = new PriorityQueue<>(new CronJobComparator());
+	}
 }

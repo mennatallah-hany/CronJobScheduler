@@ -117,4 +117,17 @@ public class AsyncScheduler extends AbstractScheduler{
 		return (CAPACITY - getJobCount());
 	}
 	
+	@Override
+	public void shutdown() {
+		// TODO: wait till any running job finish and store history
+		this.isRunning = false;
+		stopAllJobs();
+		LOGGER.log(Level.INFO, "Scheduler shutdown");
+	}
+	private void stopAllJobs() {
+        for (CronJob job : jobs) {
+            job.end();
+        }
+	}
+	
 }
