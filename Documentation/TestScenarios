@@ -1,0 +1,60 @@
+Some Tests:
+=========================
+!Priority Scheduler Tests:!
+=========================
+1) Scheduler with 0 jobs
+2) Scheduler with # of jobs less than capacity
+3) Scheduler with # of jobs equal capacity
+4) Scheduler with # of jobs greater than capacity
+5) Add jobs before scheduler start
+6) Add jobs only after scheduler start
+7) Add jobs before and after start
+8) Add jobs after shutdown
+9)Shut down before start with and without jobs in scheduler
+10) with different job counts run getJobCount()
+11) with different job counts run getRemSchedulerCapacity() 
+12) cancel jobs before scheduler start
+13) cancel after scheduler start
+14) cancel jobs that doesn't exist
+15) Add jobs with 0 interval time
+16) Add jobs with 0 and more than zero initial delay
+17) add jobs with same initial delay and same interval
+18) Add jobs more than scheduler capacity
+19)
+=========================
+!Asynch Scheduler Tests:!
+=========================
+Same as priority scheduler
++
+
+=========================
+!Scheduler Factory Tests:!
+=========================
+1)Try the 3 types 
+=================
+!Cron Job Tests:!
+=================
+1) shouldRunNow() with no scheduled time
+2) shouldRunNow() with scheduled time before now
+3) shouldRunNow() with scheduled time after now
+4) update scheduled time and compare before and after
+5) set scheduled time and verify getNextRunScheduledTime()
+6) execute null job
+7) execute a job
+8) set variables and try all getXXX methods
+9) end() and compare state before and after
+==============
+!Job Tests:!
+=============
+1)set variables and try getId method
+=====================
+!Job Schedule Tests:!
+====================
+1)check assignedAt and cheduledTime before and after initialize()
+2) set scheduled time and verify getNextRunScheduledTime()  
+3) check assignedAt  before and after initJobAssignedAt()
+4) set scheduled time and check before and after updateScheduledTime() 
+=====================
+!Time Interval Tests:!
+=====================
+1)addTimeIntervalToCalendar try adding each variable alone then different combinations and check Calendar before and after

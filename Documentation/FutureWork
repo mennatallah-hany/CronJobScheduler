@@ -1,10 +1,6 @@
-->Use Locks 
------------------------------------------------------
--> Add class diagram
------------------------------------------------------
--> Add Test Coverage
+->Use Locks for synchronization (Important)
 -------------------------------------------------------
-->Add actual and expected execution time
+->Add actual execution time
 ------------------------------------------------------
 ->Save history of scheduler and jobs and export it to text file
 ----------------------------------------------------
@@ -18,7 +14,7 @@
 -frequency(Daily/hourly/..)
 -atTime - atDay - atMonth -atYear
 
-can have an abstract class and both inherits it
+can have an abstract class and both inherit it
 ----------------------------------------------------
 -> Refactor TimeInterval to use TimeSpan and Period
 ----------------------------------------------------
